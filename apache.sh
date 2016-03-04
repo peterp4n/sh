@@ -2,7 +2,7 @@ sed -i "s/#define DEFAULT_SERVER_LIMIT 256/#define DEFAULT_SERVER_LIMIT 1024/g" 
 sed -i "s/#define DEFAULT_SERVER_LIMIT 16/#define DEFAULT_SERVER_LIMIT 64/g" server/mpm/worker/worker.c
 sed -i "s/User daemon/User apache/g" docs/conf/httpd.conf.in
 sed -i "s/Group daemon/Group apache/g" docs/conf/httpd.conf.in
-sed -i "s/#ServerName www.example.com:@@Port@@/ServerName 218.146.255.209/g" docs/conf/httpd.conf.in
+sed -i "s/#ServerName www.example.com:@@Port@@/ServerName ServerAddr/g" docs/conf/httpd.conf.in
 ./configure \
 --prefix=/web/apache \
 --with-layout=Apache \
