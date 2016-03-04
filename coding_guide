@@ -16,3 +16,34 @@
 0. composer 사용 ( 희망사항 )
 
 
+
+###########################
+## Stress Test tool - nGrinder
+## 웹서버 (기본 ) - 동적데이타(html, php) - apache 2.4 
+## 웹서버 (확장 ) - 정적데이타(css, img, js) - nginx
+## 개발언어 - PHP 7.0 + OPCACHE
+## 디비서버(RDBMS) - MySQL
+## 디비서버(NoSQL) - Couchbase, Redis, MongoDB, Membase, Cassandra  
+ CouchDB 는 MDM 에 알맞고, 
+ Redis 는 Log, Cache, ETL 등에 알맞고, 
+ MongoDB 는 팔방미인이고, 
+ Membase는 메모리 기반이므로, 속도는 빠르고, 용량이 작은 분야 
+## 형상관리 - GIT/Github
+## 빌드배포 - http://php-maven.org/ 
+## 네트워크 모니터링 - Zabbix, Cacti, Icinga, Observium 
+## 서버 내부 모니터링 - htop, dstat, vmstat, mpstat, iostat, netstat, sysstat, free, sar, ping
+## 부하할당장치(AutoScale)
+Scale-out 가능한 Stateless, Shared-nothing구조
+서버형상관리 : Puppet, Ansible, Docker, Chef 중 Chef를 가장 많이 사용
+클라우드의 주요 핵심기능 중의 하나인 자동 스케일아웃(Auto Scale-Out)과 자동 스케일인(Auto Scale-In) 기능을 통해서 
+서비스 부하를 자동으로 분산해서 과잉 투자 및 재원 낭비를 막고 사용자 서비스 향상을 꾀한다.
+HAProxy => a Reverse-proxy Load-Balancer 
+Varnish  => a Reverse-proxy cache. 
+
+## 어프로치 / Memcached / APC(PHP)
+## PHP + Memcached 
+## PECL:memcached는 memcached 에 직접 접속하는 PHP 모듈이고, 
+## PECL:memcached는 libMemcached 를 통해 memcached 에 접속하는 모듈
+
+## 서버 ( 웹 + 디비) 일때 uptime으로 봤을 때 0.7정도 되면 서버 분리를 해야 됨
+
