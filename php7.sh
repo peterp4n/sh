@@ -54,6 +54,11 @@
 --enable-wddx \
 --with-zlib-dir=/usr/lib 
 
+# fpm 설정시 
+#--enable-fpm \
+#--with-fpm-user=nginx \
+#--with-fpm-group=nginx \
+
 #--enable-igbinary \
 #--enable-redis \
 #--enable-redis-igbinary \
