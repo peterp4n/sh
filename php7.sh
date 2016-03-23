@@ -1,5 +1,5 @@
 ./configure \
---prefix=/web/php5 \
+--prefix=/web/php7 \
 --with-apxs2=/web/apache/bin/apxs  \
 --with-config-file-path=/web/apache/conf/  \
 --enable-mysqlnd \
