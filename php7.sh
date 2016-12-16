@@ -1,3 +1,10 @@
+ext/igbinary
+ext/phpredis
+ext/xdebug
+rm -fr configure
+./buildconf --force
+
+
 ./configure \
 --prefix=/web/php7 \
 --with-apxs2=/web/apache/bin/apxs  \
