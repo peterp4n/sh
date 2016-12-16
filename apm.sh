@@ -1,4 +1,9 @@
 
+
+0. 컴파일시 필요사항
+	!. yum -y groupinstall 'Developer Tools' 
+	!. yum -y install zlib-devel openssl-devel pcre-devel
+	!. yum -y install automake1.4 <- php에서 buildconf --force를  사용하기 위해서
 0. mysql [리눅스 디비서버]
 	!. mysql-enterprise-gpl-5[1].1.34-linux-x86_64-glibc23.tar.gz
 	!. 기능 : 디비서버
