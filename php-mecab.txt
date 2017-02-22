@@ -1,0 +1,63 @@
+
+#############################
+### 참고사이트 
+#############################
+1. http://www.bjcomm.co.kr/159
+2. http://dumpcookie.tistory.com/entry/php-mecab-%EB%B0%94%EC%9D%B8%EB%94%A9-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+3. http://dumpcookie.tistory.com/entry/형태소-분석기-mecab와-온전한닢-프로젝트
+4. http://guruble.com/?p=416
+
+#############################
+### php-mecab 
+#############################
+0. 다운
+https://bitbucket.org/eunjeon/mecab-ko/downloads/
+1. 설치
+$ ./configure --prefix=/web/mecab
+$ make
+$ make install
+
+
+#############################
+### mecab-ko-dic 
+#############################
+0. 다운 
+https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/
+$ ./autogen.sh
+$ ./configure --with-mecab-config=/web/mecab/bin/mecab-config
+$ make
+$ make install
+$ vi /web/mecab/etc/mecabrc 에서 경로수정
+dicdir =  /web/mecab/lib/mecab/dic/mecab-ko-dic   
+ 
+
+#############################
+### php-mecab 
+#############################
+0. 다운
+	https://github.com/rsky/php-mecab
+1. 설치 
+$ phpize
+@@ For developers: CFLAGS="-Wall -Wextra -Wno-unused-parameter" ./configure
+$ ./configure --with-php-config=/web/php5/bin/php-config --with-mecab=/path/to/mecab-config
+$ make
+$ make test
+$ make install
+
+2. php.ini 수정 
+extension=mecab.so
+
+3. 예제
+<?
+$dic = '/web/mecab/lib/mecab/dic/mecab-ko-dic/';
+ini_set('mecab.default_dicdir', $dic);
+
+$arg = array();
+
+$mecab = mecab_new($arg);
+
+$str = "PHP-mecab 한글테스트중입니다. 무궁화꽃이 피었습니다";
+echo mecab_sparse_tostr($mecab, $str);
+
+mecab_destroy($mecab);
+
