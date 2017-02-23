@@ -30,3 +30,51 @@
 	mysql> DESCRIBE innodb_memcache.containers;
   
 
+https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/binary-installation.html
+
+
+cmake \
+-DCMAKE_INSTALL_PREFIX=/home/server/mysql \
+-DMYSQL_DATADIR=/home/server/mysql/data \
+-DWITH_EXTRA_CHARSETS=all \
+-DENABLED_LOCAL_INFILE=1 \
+-DSYSCONFDIR=/etc \
+-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+-DDEFAULT_CHARSET=utf8 \
+-DDEFAULT_COLLATION=utf8_general_ci \
+-DWITH_BOOST=./boost \
+
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_PARTITION_STORAGE_ENGINE=1 \
+-DWITH_FEDERATED_STORAGE_ENGINE=1 \
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+-DWITH_MYISAM_STORAGE_ENGINE=1 \
+
+   
+make
+
+make install
+
+./mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data 
+
+
+
+
+iPUe,ng:y9sS
+
+
+
+01. wget mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
+02. tar xvzf mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
+03. mv mysql-5.7.17-linux-glibc2.5-x86_64 mysql57
+04. cd mysql75
+05. mkdir data
+06. chown -R mysql. -R ../mysql57
+07. ./scripts/mysql_install_db --user=mysql	# MySQL 5.7.0 to 5.7.4
+07. ./bin/mysql_install_db --user=mysql		# MySQL 5.7.5
+07. ./bin/mysqld --initialize --user=mysql	# MySQL 5.7.6 and up
+07. ./bin/mysql_ssl_rsa_setup				# MySQL 5.7.6 and up
+08. chown -R root .
+09. chown -R mysql data mysql-files
+10. ./bin/mysqld_safe --user=mysql &
+11. cp support-files/mysql.server /etc/init.d/mysql.server
