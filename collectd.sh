@@ -2,6 +2,13 @@ collectd
 
 ### download
 https://collectd.org/download.shtml
+http://collectd.org/
+
+### install
+$ yum -y install rrdtool-devel
+$ ./configure --prefix=/home/server/collectd --enable-rrdtool --enable-debug --enable-write_graphite --enable-logfile
+$ make
+$ make install
 
 
 ### Plugins
