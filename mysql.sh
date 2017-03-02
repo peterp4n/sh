@@ -59,7 +59,9 @@ make install
 
 
 
- 
+### 참고사이트
+https://osskdb.wordpress.com/2016/09/30/mysql-5-7-x-%EC%84%A4%EC%B9%98/
+https://dev.mysql.com/doc/refman/5.7/en/binary-installation.html
 #### mysql 5.7.17 binary install 
 00. cd /usr/local
 01. wget mysql-VERSION-OS.tar.gz
