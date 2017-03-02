@@ -59,22 +59,34 @@ make install
 
 
 
-
-iPUe,ng:y9sS
-
-
-
-01. wget mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
-02. tar xvzf mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
-03. mv mysql-5.7.17-linux-glibc2.5-x86_64 mysql57
-04. cd mysql75
-05. mkdir data
-06. chown -R mysql. -R ../mysql57
-07. ./scripts/mysql_install_db --user=mysql	# MySQL 5.7.0 to 5.7.4
-07. ./bin/mysql_install_db --user=mysql		# MySQL 5.7.5
+ 
+#### mysql 5.7.17 binary install 
+00. cd /usr/local
+01. wget mysql-VERSION-OS.tar.gz
+02. tar xvzf mysql-VERSION-OS.tar.gz
+03. mv mysql-VERSION-OS mysql
+04. cd mysql
+05. mkdir data mysql-files
+06. chown -R mysql. -R ../mysql
 07. ./bin/mysqld --initialize --user=mysql	# MySQL 5.7.6 and up
-07. ./bin/mysql_ssl_rsa_setup				# MySQL 5.7.6 and up
-08. chown -R root .
-09. chown -R mysql data mysql-files
-10. ./bin/mysqld_safe --user=mysql &
+08. ./bin/mysqld_safe --user=mysql &
+09. ./bin/mysql -uroot -p
+    Enter password: ptpiGPrw)0Rc <임시 비밀번호 입력
+mysql> alter user 'root'@'localhost' identified by 'new password';
 11. cp support-files/mysql.server /etc/init.d/mysql.server
+ 
+### my.cnf create
+[mysqld]
+user = mysql
+port = 3306
+basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data
+socket=/tmp/mysql.sock
+innodb_data_file_path=ibdata1:12M:autoextend
+innodb_log_files_in_group=2
+innodb_log_file_size=50M
+
+[mysqld_safe]
+log-error=/usr/local/mysql/data/mysqld.log
+
+
