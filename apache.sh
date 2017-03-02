@@ -26,3 +26,18 @@ make install
 #--enable-proxy \
 #--enable-proxy-http \
 #--with-mpm=worker \
+
+
+
+
+### extra/httpd-php.conf
+# php handler
+<filesmatch \.(html|php|inc)$>
+      SetHandler application/x-httpd-php
+</filesmatch>
+
+<filesmatch \.phps$>
+      SetHandler application/x-httpd-php-source
+</filesmatch>
+
+
