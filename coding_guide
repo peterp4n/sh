@@ -1,8 +1,8 @@
 ### 개발 환경 ####
-0. 웹서버 - apache 2.4.18
-0. 웹어플 - PHP 7.0.4
-0. 관계형디비 - MySQL 5.7.11
-0. 메모리디비 - Redis 3.0.7
+0. 웹서버 - apache 2.4.25
+0. 웹어플 - PHP 7.1.2
+0. 관계형디비 - MySQL 5.7.17
+0. 메모리디비 - Redis 3.2.8
 
 ### 개발시 주의사항 ####
 0. 기본 캐릭터셋 UTF-8
@@ -15,14 +15,21 @@
 0. 이미지링크, CSS링크, JS링크 -- 이미지서버
 0. 업로드된 파일 -- 업로드서서버
 0. composer 사용 ( 희망사항 )
+0. $_POST와 $_GET 안에 담긴 변수를 웬만하면 밖으로 꺼내서 사용하지 않는다. 변수의 출처를 알기 위해서다. 
+   (특히 extract는 사용하지 않는다.)
+0. PHP 함수 안에서 $_POST와 $_GET을 사용하지 않는다. 
+   필요하면 인자로 받아서 쓴다.
 
+### javascript, css 코딩주의
+0. jQuery에서 $(document).ready(function(){})를 사용하고 $(funciton(){})는 사용하지 않는다.
+0. expression 사용안하기
 
 
 ###########################
 ## Stress Test tool - nGrinder
 ## 웹서버 (기본 ) - 동적데이타(html, php) - apache 2.4 
 ## 웹서버 (확장 ) - 정적데이타(css, img, js) - nginx
-## 개발언어 - PHP 7.0 + OPCACHE
+## 개발언어 - PHP 7.1 + OPCACHE
 ## 디비서버(RDBMS) - MySQL
 ## 디비서버(NoSQL) - Couchbase, Redis, MongoDB, Membase, Cassandra  
  CouchDB 는 MDM 에 알맞고, 
