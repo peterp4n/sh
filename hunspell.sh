@@ -28,7 +28,7 @@ python3.6 get-pip.py
 
 
 
-###. php_hunspell
+###. php_hunspell - php7에서 연동문제를 해결해야 될듯함   
 1. down
 https://github.com/taggon/php_hunspell
 2. install
