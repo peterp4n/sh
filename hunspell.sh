@@ -33,7 +33,8 @@ python3.6 get-pip.py
 https://github.com/taggon/php_hunspell
 2. install
 # /home/server/php7/bin/phpize
-# ./configure --with-php-config=/home/server/php7/bin/php-config
+# ln -s /home/server/hunspell/lib/libhunspell-1.6.so /home/server/hunspell/lib/libhunspell.so
+# ./configure --with-php-config=/home/server/php7/bin/php-config  --with-hunspell=/home/server/hunspell
 # make
 # make install
 
