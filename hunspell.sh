@@ -17,8 +17,7 @@ mkae install
 https://github.com/changwoo/hunspell-dict-ko/
 2. python3 install 
 # wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz
-# ./configure --prefix=/home/server/python3 
-# ./configure --enable-optimizations
+# ./configure --prefix=/home/server/python3 --enable-optimizations
 # make
 # make altinstall
 # strip /home/server/python3/lib/libpython3.6m.so.1.0
