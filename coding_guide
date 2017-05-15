@@ -1,3 +1,6 @@
+### 참고문서자료
+http://modernpug.github.io/php-the-right-way/#security
+
 ### 개발 환경 ####
 0. 웹서버 - apache 2.4.25
 0. 웹어플 - PHP 7.1.2
