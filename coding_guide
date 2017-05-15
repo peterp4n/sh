@@ -20,8 +20,7 @@
 0. PHP 함수 안에서 $_POST와 $_GET을 사용하지 않는다. 
    필요하면 인자로 받아서 쓴다.
 
-### javascript, css 코딩주의
-0. jQuery에서 $(document).ready(function(){})를 사용하고 $(funciton(){})는 사용하지 않는다.
+### javascript, css 코딩주의 
 0. expression 사용안하기
 
 
