@@ -4,6 +4,10 @@
 0. 관계형디비 - MySQL 5.7.17
 0. 메모리디비 - Redis 3.2.8
 
+### php.ini 보안설정 ###
+0. allow_url_fopen = Off
+0. safe_mode = Off
+
 ### 개발시 주의사항 ####
 0. 기본 캐릭터셋 UTF-8
 0. PSR-2 방식으로 코딩 - http://www.php-fig.org/psr/psr-2/ 사이트 참고
@@ -19,6 +23,7 @@
    (특히 extract는 사용하지 않는다.)
 0. PHP 함수 안에서 $_POST와 $_GET을 사용하지 않는다. 
    필요하면 인자로 받아서 쓴다.
+0. DocBlock을 사용할 것.
 
 ### javascript, css 코딩주의 
 0. expression 사용안하기
