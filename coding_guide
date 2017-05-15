@@ -12,9 +12,22 @@
 0. 기본 캐릭터셋 UTF-8
 0. PSR-2 방식으로 코딩 - http://www.php-fig.org/psr/psr-2/ 사이트 참고
 0. 개발시 => error_reporting(E_ALL); 
-             ini_set('display_errors', '1');
+            ini_set('display_errors', '1');
+            # php.ini 설정
+            display_errors = On
+            display_startup_errors = On
+            error_reporting = -1
+            log_errors = On             
+             
 0. 오픈시 => error_reporting(E_ALL ^ E_NOTICE); 
-             ini_set('display_errors', '0');
+            ini_set('display_errors', '0');
+            # php.ini 설정
+            display_errors = Off
+            display_startup_errors = Off
+            error_reporting = E_ALL
+            log_errors = On             
+             
+             
 0. SESSION 대신 Redis, igbinary 사용 (파일상의 성능차이)
 0. 이미지링크, CSS링크, JS링크 -- 이미지서버
 0. 업로드된 파일 -- 업로드서서버
