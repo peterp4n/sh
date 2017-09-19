@@ -1,0 +1,55 @@
+0. 설치 메뉴얼 
+http://www.redmine.org/projects/redmine/wiki/RedmineInstall
+
+1. download
+http://www.redmine.org/projects/redmine/wiki/Download
+
+2. create database 
+CREATE DATABASE redmine CHARACTER SET utf8;
+CREATE USER 'redmine'@'localhost' IDENTIFIED BY 'my_password';
+GRANT ALL PRIVILEGES ON redmine.* TO 'redmine'@'localhost';
+
+3. Database connection configuration
+Copy config/database.yml.example to config/database.yml
+production:
+  adapter: mysql2
+  database: redmine
+  host: localhost
+  port: 3306
+  username: redmine
+  password: redmine
+ 
+4. Dependencies installation
+gem install bundler
+bundle install --without development test
+
+5. Session store secret generation
+bundle exec rake generate_secret_token
+
+Alternatively, you can store this secret in config/secrets.yml:
+http://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml
+
+6. Database schema objects creation
+RAILS_ENV=production bundle exec rake db:migrate
+
+7. Database default data set
+RAILS_ENV=production bundle exec rake redmine:load_default_data
+
+8. File system permissions 
+    files (storage of attachments)
+    log (application log file production.log)
+    tmp and tmp/pdf (create these ones if not present, used to generate PDF documents among other things)
+    public/plugin_assets (assets of plugins)
+
+    mkdir -p tmp tmp/pdf public/plugin_assets
+    sudo chown -R redmine:redmine files log tmp public/plugin_assets
+    sudo chmod -R 755 files log tmp public/plugin_assets
+
+9. Test the installation
+bundle exec rails server webrick -e production
+
+10. Logging into the application
+
+    login: admin
+    password: admin
+
