@@ -4,6 +4,9 @@ sed -i "s/User daemon/User apache/g" docs/conf/httpd.conf.in
 sed -i "s/Group daemon/Group apache/g" docs/conf/httpd.conf.in
 sed -i "s/#ServerName www.example.com:@@Port@@/ServerName 000.000.000.000/g" docs/conf/httpd.conf.in
 yum -y install pcre*
+yum -y install openssl*
+yum -y install mod_ssl*
+yum -y install zlib-devel
 ./configure \
 --prefix=/web/apache \
 --with-layout=Apache \
