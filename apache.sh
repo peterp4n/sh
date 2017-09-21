@@ -7,6 +7,7 @@ yum -y install pcre*
 yum -y install openssl*
 yum -y install mod_ssl*
 yum -y install zlib-devel
+yum -y install expat-devel
 ./configure \
 --prefix=/web/apache \
 --with-layout=Apache \
