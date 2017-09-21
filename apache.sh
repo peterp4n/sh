@@ -3,6 +3,7 @@ sed -i "s/#define DEFAULT_SERVER_LIMIT 16/#define DEFAULT_SERVER_LIMIT 64/g" ser
 sed -i "s/User daemon/User apache/g" docs/conf/httpd.conf.in
 sed -i "s/Group daemon/Group apache/g" docs/conf/httpd.conf.in
 sed -i "s/#ServerName www.example.com:@@Port@@/ServerName 000.000.000.000/g" docs/conf/httpd.conf.in
+yum -y install pcre*
 ./configure \
 --prefix=/web/apache \
 --with-layout=Apache \
