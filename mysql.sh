@@ -75,6 +75,7 @@ https://dev.mysql.com/doc/refman/5.7/en/binary-installation.html
 09. ./bin/mysql -uroot -p
     Enter password: ptpiGPrw)0Rc <임시 비밀번호 입력
 mysql> alter user 'root'@'localhost' identified by 'new password';
+mysql> set password=password('new password');
 11. cp support-files/mysql.server /etc/init.d/mysql.server
  
 ### my.cnf create
