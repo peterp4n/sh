@@ -1,1 +1,3 @@
-WebVTT
+Web Video Text Tracks Format (WebVTT)
+
+https://github.com/mozilla/vtt.js
