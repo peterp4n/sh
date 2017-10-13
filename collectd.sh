@@ -10,6 +10,28 @@ $ ./configure --prefix=/home/server/collectd --enable-rrdtool --enable-debug --e
 $ make
 $ make install
 
+###  init script file copy
+$ cp contrib/redhat/init.d-collectd /etc/init.d/collectd
+$ chmod 0755 /etc/init.d/collectd
+
+### collectd-web install
+* 미리 perl(Config:General), perl RRDs, perl(JSON), perl-rrdtool 설치
+$ git clone https://github.com/httpdss/collectd-web.git
+$ cd collectd-web
+$ ./check_deps.sh
+
+### collectd-web set 
+$ cat /usr/etc/collectd-web.conf
+  datadir: "/web/collectd/var/lib/collectd/rrd"
+  libdir: "/web/collectd/var/lib/collectd"
+
+### permission set
+$ vi runserver.py
+  127.0.0.1 부분을 0.0.0.0으로 수정
+
+### web server start
+$ ./runserver.py & 
+
 
 ### Plugins
 
