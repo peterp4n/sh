@@ -1,0 +1,40 @@
+###  참조 
+https://zinoui.com/blog/cross-origin-resource-sharing
+
+### Allow access from all domains
+// Raw header
+Access-Control-Allow-Origin: *
+
+// How to send the response header with PHP
+header("Access-Control-Allow-Origin: *");
+
+// How to send the response header with Apache (.htaccess)
+Header set Access-Control-Allow-Origin "*"
+
+// How to send the response header with Nginx
+add_header 'Access-Control-Allow-Origin' '*';
+
+// How to send the response header with Express.js
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
+### Allow access from specific domain
+// Raw header
+Access-Control-Allow-Origin https://www.domain.com
+
+// How to send the response header with PHP
+header("Access-Control-Allow-Origin: https://www.example.org");
+
+// How to send the response header with Apache (.htaccess)
+Header set Access-Control-Allow-Origin "https://zinoui.com"
+
+// How to send the response header with Nginx
+add_header 'Access-Control-Allow-Origin' 'https://zinoui.com';
+
+// How to send the response header with Express.js
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://plus.google.com");
+    next();
+});
