@@ -1,6 +1,9 @@
 ###  참조 
 https://zinoui.com/blog/cross-origin-resource-sharing
 
+### example
+http://blog.naver.com/PostView.nhn?blogId=forioso&logNo=220747589936&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=true&from=search
+
 ### Allow access from all domains
 // Raw header
 Access-Control-Allow-Origin: *
