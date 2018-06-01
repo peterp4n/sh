@@ -8,4 +8,7 @@
   make 
   make install
   
-3.   
+3. path 
+  vi /etc/profile 
+  source /etc/profile
+  
