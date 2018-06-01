@@ -12,3 +12,8 @@
   vi /etc/profile 
   source /etc/profile
   
+4. project
+  mkdir procject
+  cd project
+  vi package.json
+  project working
