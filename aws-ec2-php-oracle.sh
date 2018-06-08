@@ -18,6 +18,9 @@
 06. yum -y install httpd24* php71* 
 07. download oracle 12c instantclient  패키지 다운로드 / 설치
    http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+   download instantclient-basic-linux.x64-version.zip
+   download instantclient-sdk-linux.x64-version.zip
+   download instantclient-sqlplus-linux.x64-version.zip <-- sqlplus 사용으로 필요, 사용치 않으면 필요없음   
    unzip *	
    mv instantclient_12_2/ /usr/lib/oracle/12.2
    mkdir -p /usr/lib/oracle/12.2/bin /usr/lib/oracle/12.2/doc /usr/lib/oracle/12.2/NETWORK/admin 
