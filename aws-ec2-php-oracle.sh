@@ -16,7 +16,18 @@
    4) rdate -s time.bora.net
 05. yum -y group install 'Development tools'
 06. yum -y install httpd24* php71* 
-07. download oracle 12c instantclient  패키지 다운로드 / 설치
+07. /etc/profile edit
+##################### oracle oci setting
+export ORACLE_HOME=/usr/lib/oracle/12.2
+export TNS_ADMIN=$ORACLE_HOME/NETWORK/admin
+export LD_LIBRARY_PATH=$ORACLE_HOME:$ORACLE_HOME/sdk
+export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/bin
+
+##################### nodejs setting
+export NODEJS_HOME=/web/nodejs6
+export PATH=$PATH:$NODEJS_HOME/bin
+08. source /etc/profile
+09. download oracle 12c instantclient  패키지 다운로드 / 설치
    http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
    download instantclient-basic-linux.x64-version.zip
    download instantclient-sdk-linux.x64-version.zip
@@ -59,42 +70,31 @@ ORCL =
   )
 
 
-08. echo /usr/lib/oracle/12.2 > /etc/ld.so.conf.d/oracle-instantclient
-09. /etc/profile edit
-##################### oracle oci setting
-export ORACLE_HOME=/usr/lib/oracle/12.2
-export TNS_ADMIN=$ORACLE_HOME/NETWORK/admin
-export LD_LIBRARY_PATH=$ORACLE_HOME:$ORACLE_HOME/sdk
-export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/bin
-
-##################### nodejs setting
-export NODEJS_HOME=/web/nodejs6
-export PATH=$PATH:$NODEJS_HOME/bin
-
-10. ldconfig
-11. oracle 접속 확인
+10. echo /usr/lib/oracle/12.2 > /etc/ld.so.conf.d/oracle-instantclient
+11. ldconfig
+12. oracle 접속 확인
 	# sqlplus 아이디/비밀번호@//아이피:포트/서비스명  
   # sqlplus 아이디/비밀번호@서비스명
-12. php7.1 down
+13. php7.1 down
    wget http://jp2.php.net/get/php-7.1.17.tar.gz/from/this/mirror -O php-7.1.17.tar.gz
    tar xvzf php-7.1.17.tar.gz
    cd php-7.1.17/ext/
-13. oracle oci8 설치
+14. oracle oci8 설치
    cd oci8
    phpize
    ./configure --with-oci8=instantclient,/usr/lib/oracle/12.2,12.2
    make install
-14. oracle pdo_oci 설치 - 현재 에러 발생 (해결 방법 찾지 못함)
+15. oracle pdo_oci 설치 - 현재 에러 발생 (해결 방법 찾지 못함)
    cd pdo_oci
    phpize
    ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2.0.1.0
    make install
-15. php.ini 설정 (오라클포함)
+16. php.ini 설정 (오라클포함)
     extension=oci8.so
     extension=pdo_oci.so -- 에러발생시(제외시킴)
     short_tag = On
     timezone = Asia/Seoul
     display_errors = On
- 16. composer install (설치가 안되어 있다면)
+ 17. composer install (설치가 안되어 있다면)
    curl -sS https://getcomposer.org/installer | /usr/bin/php && mv composer.phar /usr/bin/composer
 
