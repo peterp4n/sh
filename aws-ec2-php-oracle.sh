@@ -86,10 +86,12 @@ export PATH=$PATH:$NODEJS_HOME/bin
    phpize
    ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2.0.1.0
    make install
-15. php.ini 오라클 설정 추가
+15. php.ini 설정 (오라클포함)
     extension=oci8.so
-    extension=pdo_oci.so
+    extension=pdo_oci.so -- 에러발생시(제외시킴)
     short_tag = On
     timezone = Asia/Seoul
     display_errors = On
- 
+ 16. composer install (설치가 안되어 있다면)
+   curl -sS https://getcomposer.org/installer | /usr/bin/php && mv composer.phar /usr/bin/composer
+
