@@ -1,6 +1,6 @@
 
 ##############################################################################
-###### 아마존 리눅스 설치
+###### 아마존 리눅스에 APACHE + PHP + ORACLE 설치
 ##############################################################################
 01. yum makecache fast
 02. yum -y update
@@ -98,3 +98,14 @@ ORCL =
  17. composer install (설치가 안되어 있다면)
    curl -sS https://getcomposer.org/installer | /usr/bin/php && mv composer.phar /usr/bin/composer
 
+
+##############################################################################
+###### 아마존 Zadara(NAS) 설치
+##############################################################################
+1. Zadara 설치 - 자동
+    wget -O ~/vpsa_linux.sh "https://172.28.212.100/api/servers/vpsa_linux.sh?iscsi=yes&fc=no&vpsachapuser=$vpsachapuser&vpsachapsecret=$vpsachapsecret&access_key=$access_key" --no-check-certificate
+    sudo yum -y install iscsi-initiator-utils.x86_64
+    mount -t nfs 172.28.212.100:/export/폴더명 폴더명 
+
+1. Zadara 설치 - 수동 (zadara GUI사이트에서 설정후)
+    mount -t nfs 172.28.212.100:/export/폴더명 폴더명  
