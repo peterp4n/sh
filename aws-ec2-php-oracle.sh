@@ -99,6 +99,7 @@ ORCL =
  17. composer install (설치가 안되어 있다면)
    curl -sS https://getcomposer.org/installer | /usr/bin/php && mv composer.phar /usr/bin/composer
 
+ 18. postfix install (확인해야됨)
 
 ##############################################################################
 ###### 아마존 Zadara(NAS) 설치
