@@ -8,10 +8,10 @@
 4. http://guruble.com/?p=416
 
 #############################
-### php-mecab 
+### mecab 
 #############################
-0. 다운
-https://bitbucket.org/eunjeon/mecab-ko/downloads/
+0. 다운 - https://bitbucket.org/eunjeon/mecab-ko/downloads/
+wget https://bitbucket.org/eunjeon/mecab-ko/downloads/mecab-0.996-ko-0.9.2.tar.gz
 1. 설치
 $ ./configure --prefix=/web/mecab
 $ make
@@ -21,8 +21,9 @@ $ make install
 #############################
 ### mecab-ko-dic 
 #############################
-0. 다운 
-https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/
+0. 다운 https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/
+wget https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/mecab-ko-dic-2.0.3-20170922.tar.gz
+1. 설치
 $ ./autogen.sh
 $ ./configure --with-mecab-config=/web/mecab/bin/mecab-config
 $ make
@@ -34,30 +35,29 @@ dicdir =  /web/mecab/lib/mecab/dic/mecab-ko-dic
 #############################
 ### php-mecab 
 #############################
-0. 다운
-	https://github.com/rsky/php-mecab
+0. 다운 https://github.com/rsky/php-mecab
+git clone https://github.com/rsky/php-mecab.git
 1. 설치 
 $ phpize
 @@ For developers: CFLAGS="-Wall -Wextra -Wno-unused-parameter" ./configure
-$ ./configure --with-php-config=/web/php5/bin/php-config --with-mecab=/path/to/mecab-config
+$ ./configure --with-php-config=/usr/bin/php-config --with-mecab=/web/mecab/bin/mecab-config
 $ make
 $ make test
 $ make install
 
 2. php.ini 수정 
 extension=mecab.so
+mecab.default_dicdir = '/web/mecab/lib/mecab/dic/mecab-ko-dic/'
 
 3. 예제
-<?
-$dic = '/web/mecab/lib/mecab/dic/mecab-ko-dic/';
-ini_set('mecab.default_dicdir', $dic);
-
+<? 
 $arg = array();
 
-$mecab = mecab_new($arg);
+$mecab = new \MeCab\Tagger();  
 
+echo $mecab->parse('안녕하세요? 반갑습니다.');
+ 
 $str = "PHP-mecab 한글테스트중입니다. 무궁화꽃이 피었습니다";
 echo mecab_sparse_tostr($mecab, $str);
 
 mecab_destroy($mecab);
-
