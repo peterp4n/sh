@@ -1,3 +1,4 @@
+0. 참조사이트 : http://www.gurubee.net
 0. oracle download
    http://www.oracle.com
    
