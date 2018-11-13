@@ -19,6 +19,7 @@
   project working
 
 ## process 관리 PM2
+## 참조 : https://blog.outsider.ne.kr/1197
 1. 설치 
 $ npm install pm2 -g
 
