@@ -88,7 +88,7 @@ ORCL =
    오류내용 : undefined symbol: php_pdo_unregister_driver
    cd pdo_oci
    phpize
-   ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2.0.1.0
+   ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2
    make install
 16. php.ini 설정 (오라클포함)
     extension=oci8.so
