@@ -1,4 +1,7 @@
 
+0. 참조
+https://docs.microsoft.com/ko-kr/sql/connect/php/installation-tutorial-linux-mac?view=sql-server-2017
+
 1. msodbc 설치 - redhat 7, mssqlodbcsql v.17 
 https://packages.microsoft.com/rhel
 https://packages.microsoft.com/rhel/7/prod/msodbcsql17-17.2.0.1-1.x86_64.rpm
