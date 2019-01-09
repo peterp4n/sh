@@ -1,0 +1,17 @@
+
+1. msodbc 설치 - redhat 7, mssqlodbcsql v.17 
+https://packages.microsoft.com/rhel
+https://packages.microsoft.com/rhel/7/prod/msodbcsql17-17.2.0.1-1.x86_64.rpm
+rpm -ivh msodbcsql17-17.2.0.1-1
+
+2. sqlsrv 설치
+https://github.com/Microsoft/msphpsql/releases
+https://github.com/Microsoft/msphpsql/releases/download/v5.3.0/CentOS7-7.1.tar
+tar xvf CentOS7-7.1.tar
+
+3. php.ini 설정
+extension=/web/php7/lib/php/extensions/no-debug-zts-20160303/php_sqlsrv_71_ts.so
+extension=/web/php7/lib/php/extensions/no-debug-zts-20160303/php_pdo_sqlsrv_71_ts.so
+
+4. apache 재시작
+
