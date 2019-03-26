@@ -2,12 +2,44 @@ GIT 작업하기
 
 https://rogerdudler.github.io/git-guide/index.ko.html
 
-1. git add 작업폴더/파일
-2. git commit -m "문구"
-3. git status
-4. git push
-5.마스터폴더 이동
-6. git pull 
+
+### 작업변경 내용 색상으로 비교 
+git diff --color-words
+
+### 작업변경 내용 단어로 비교
+git diff --word-diff
+
+### 작업취소
+git checkout -- 취소할파일명
+
+
+### commit 취소
+gitreset --soft commit번호
+
+
+### 전체 추가 작업방법 
+git status
+git add -p
+git add 작업폴더/파일
+git diff -staged
+git commit -v
+git commit -m '문구'  
+git status
+git push
+git checkout master
+git pull 
+git merge master
+git push
+ 
+
+### 부분 추가 작업방법 
+git add file1 file2 
+git commit file1 file2 -m '문구' 
+git push
+git checkout master
+git merge master
+git pull
+git push
 
 
 
@@ -17,11 +49,6 @@ https://rogerdudler.github.io/git-guide/index.ko.html
 3. git stash pop
 
 
-
-
-
-
-
 1. git clone [git주소] [작업디렉토리]
 2. git add .
 3. git commit -m 'init'
@@ -29,6 +56,7 @@ https://rogerdudler.github.io/git-guide/index.ko.html
 
 
 
+ 
 ### 브랜치 분기 작업방법 
 git checkout develop
 git add .
