@@ -1,0 +1,167 @@
+참고 https://community.letsencrypt.org/t/hsts-and-www-redirect-in-htaccess/21460
+
+http로 들어왔을때 https 영구 이동하게 하는 방법
+
+I have recently set up LE certificate and wanted to set up HSTS, HTTPS redirection in .htaccess. But seems the HSTS header are not being sent within 301 response, when the server redirects from https://domain.tld 3 to https://www.domain.tld 4. My .htaccess rules are below. The desired effects are:
+
+    http://domain.tld -> https://domain.tld 3 (no HSTS header in redirect response)
+
+    http://www.domain.tld -> https://www.domain.tld 4 (no HSTS header in redirect response)
+
+    https://domain.tld 3 -> https://www.domain.tld 4 (HSTS header in the response; here it does not work)
+
+    https://www.domain.tld 4 servers the content (HSTS header in response)
+    force HTTPS
+    RewriteEngine On RewriteCond %{HTTPS} off RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    HSTS
+    Header set Strict-Transport-Security "max-age=15552000"
+    redirect to www
+    RewriteEngine On RewriteCond %{HTTPS} on RewriteCond %{HTTP_HOST} !^www\. RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    created
+    Oct '16
+    last reply
+    Nov '16
+    4
+    replies
+    3.9k
+    views
+    3
+    users
+    6
+    likes
+    3
+    links
+    3
+
+sahsanu
+Community Moderator
+Oct '16
+
+Hello @MikkCZ,
+
+As far as I know, custom headers are not set on redirects, also Header set only works on success (2xx responses) if you want that those headers work on, for example, 3xx responses you need to specify the “always” condition Header always set
+
+Two examples using non custom header like Cache-Control:
+
+1.- This example won’t add header Cache-Control on redirects
+
+###
+# force HTTPS
+###
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+###
+# HSTS
+###
+<IfModule mod_headers.c>
+Header set Strict-Transport-Security "max-age=15552000"
+Header set Cache-Control "no-store, no-cache, must-revalidate"
+</IfModule>
+
+###
+# redirect to www
+###
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+Example output:
+
+curl -iL http://domain.tld/
+HTTP/1.1 301 Moved Permanently
+Date: Thu, 20 Oct 2016 18:42:49 GMT
+Server: Apache
+Location: https://domain.tld/
+Content-Length: 227
+Content-Type: text/html; charset=iso-8859-1
+
+HTTP/1.1 301 Moved Permanently
+Date: Thu, 20 Oct 2016 18:42:50 GMT
+Server: Apache
+Location: https://www.domain.tld/
+Content-Length: 231
+Content-Type: text/html; charset=iso-8859-1
+
+HTTP/1.1 200 OK
+Date: Thu, 20 Oct 2016 18:42:50 GMT
+Server: Apache
+Last-Modified: Thu, 20 Oct 2016 17:09:38 GMT
+ETag: "b-53f4efd9649b0"
+Accept-Ranges: bytes
+Content-Length: 11
+Strict-Transport-Security: max-age=15552000
+Cache-Control: no-store, no-cache, must-revalidate <--- header added
+Content-Type: text/html; charset=UTF-8
+
+2.- This example will add header Cache-Control on redirects because the use of condition “always”
+
+    ###
+    # force HTTPS
+    ###
+    <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    </IfModule>
+
+    ###
+    # HSTS
+    ###
+    <IfModule mod_headers.c>
+    Header set Strict-Transport-Security "max-age=15552000"
+    Header always set Cache-Control "no-store, no-cache, must-revalidate"
+    </IfModule>
+
+    ###
+    # redirect to www
+    ###
+    <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} on
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    </IfModule>
+
+Example output:
+
+curl -iL http://domain.tld/
+HTTP/1.1 301 Moved Permanently
+Date: Thu, 20 Oct 2016 18:46:07 GMT
+Server: Apache
+Cache-Control: no-store, no-cache, must-revalidate <--- header added on redirect
+Location: https://domain.tld/
+Content-Length: 227
+Content-Type: text/html; charset=iso-8859-1
+
+HTTP/1.1 301 Moved Permanently
+Date: Thu, 20 Oct 2016 18:46:07 GMT
+Server: Apache
+Cache-Control: no-store, no-cache, must-revalidate <--- header added on redirect
+Location: https://www.domain.tld/
+Content-Length: 231
+Content-Type: text/html; charset=iso-8859-1
+
+HTTP/1.1 200 OK
+Date: Thu, 20 Oct 2016 18:46:07 GMT
+Server: Apache
+Cache-Control: no-store, no-cache, must-revalidate  <--- header added
+Last-Modified: Thu, 20 Oct 2016 17:09:38 GMT
+ETag: "b-53f4efd9649b0"
+Accept-Ranges: bytes
+Content-Length: 11
+Strict-Transport-Security: max-age=15552000
+Content-Type: text/html; charset=UTF-8
+
+I’m not an apache expert so maybe others could have a solution for you but as I said, I think custom headers can’t be added on redirects.
+
+By the way, as HSTS header MUST be used only on https, you should add env=HTTPS to your header directive:
+
+Header set Strict-Transport-Security "max-age=15552000" env=HTTPS
