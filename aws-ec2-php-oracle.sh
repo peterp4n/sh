@@ -90,6 +90,10 @@ ORCL =
    phpize
    ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2
    make install
+
+   ## PDO_OCI 는 안정화 되어 있지 않고 업데이트가 오래된 드라이버이므로 사용하지 않는 게 좋습니다.
+   ## 대신 OCI8 을 래핑한 https://github.com/yajra/pdo-via-oci8 를 사용하여 PDO 를 에뮬레이션할 수 있습니다.
+   
 16. php.ini 설정 (오라클포함)
     extension=oci8.so
     extension=pdo_oci.so -- 에러발생시(제외시킴)
