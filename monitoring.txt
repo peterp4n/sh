@@ -1,5 +1,25 @@
 ### influxdb, telegraf, grafana, zabbix
 
+# 참조
+https://www.mynotes.kr/influxdb-%EC%84%A4%EC%B9%98/
+https://www.cyberpunk.rs/system-monitoring-with-grafana-influxdb-collectd
+https://www.popit.kr/influxdb_telegraf_grafana_1/
+https://www.popit.kr/influxdb_telegraf_grafana_2/
+https://www.popit.kr/influxdb_telegraf_grafana_3/
+http://www.netinstructions.com/how-to-monitor-your-linux-machine/
+
+https://github.com/influxdata/telegraf/blob/master/plugins/inputs/system/mock_PS.go
+https://blog.wonderwall.me/archives/121
+
+https://si.mpli.st/dev/2017-09-10-introduction-to-telegraf/
+https://docs.influxdata.com/influxdb/v1.7/
+https://code-examples.net/ko/docs/influxdata/influxdb/v1.3/query_language/database_management/index
+http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221226137412&parentCategoryNo=&categoryNo=27&viewDate=&isShowPopularPosts=true&from=search
+https://yenaworldblog.wordpress.com/2017/07/28/influxdb/
+https://swalloow.github.io/influx-grafana1
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-zabbix-to-securely-monitor-remote-servers-on-ubuntu-18-04
+https://www.fosslinux.com/8328/how-to-install-and-configure-grafana-on-centos-7.htm
+
 1. influxdb - 오픈소스로 공개된 influxdata의 tsdb(Time Series DataBase)
 	        - http://influxdata.com
 			- https://portal.influxdata.com/downloads/
