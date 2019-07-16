@@ -17,19 +17,26 @@
 4. 권한설정
    chmod 700 ~/.ssh/
    chmod 600 ~/.ssh/authorized_keys
-  
-  
-  
+
+
 #!/bin/bash
 
 LOG='로그파일경로.log'
 
-echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] =========================================================================== \n" | tee -a $LOG
-echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 1. Bastion sync to Web-01 started \n" | tee -a $LOG
-rsync -avrzv --delete --exclude '.git/' --exclude '.gitignore' --stats -l -t /소스경로/ -e "ssh 아이디@아이피:/저장경로/ | tee -a $LOG
-echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 2. Bastion sync to Web-02 started \n" | tee -a $LOG
-rsync -avrzv --delete --exclude '.git/' --exclude '.gitignore' --stats -l -t /소스경로/ -e "ssh 아이디@아이피:/저장경로/ | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] ========================================================================= \n" | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 1. sync to Web01 started \n" | tee -a $LOG
+rsync -avrz --delete --exclude '.git/' --exclude '.gitignore' --stats -t /소스경로/ -e ssh 아이디@아이피1:/저장경로/ | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 2. sync to Web02 started \n" | tee -a $LOG
+rsync -avzr --delete --exclude '.git/' --exclude '.gitignore' --stats -t /소스경로/ -e ssh 아이디@아이피2:/저장경로/ | tee -a $LOG
 echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 3. completed successfully \n\n" | tee -a $LOG
 
 
-  
+#### 참고
+rsync -u 목적지 서버 파일이 변경되면 덮어쓰지 않음
+rsync -d 목적지 서버에 폴더만 복사하고 파일을 복사하지 않음
+rsync -l 심블릭 링크의 경우 link 로 처리
+rsync -L 심블릭 링크의 경우 원본을 따라가서 원본을 복사  
+rsync --no-links 심블릭 링크의 경우 제외 
+
+
+
