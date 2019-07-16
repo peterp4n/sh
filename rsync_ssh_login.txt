@@ -1,0 +1,32 @@
+1. 공개키 파일 여부 확인
+   ~/.ssh/id_rsa.pub 
+
+2. 개인키, 공개키 생성
+   ssh-keygen -t rsa 
+   개인키는 ~/.ssh/id_rsa 
+   공개키는 ~/.ssh/id_rsa.pub
+
+3. 원격서버에 공개키 등록 (아래 3개중 선택, 2번째 비추)
+   vi ~/.ssh/authorized_keys
+   scp ~/.ssh/id_rsa.pub id@ip:~/.ssh/authorized_keys
+   ssh-copy-id -i ~/.ssh/id_rsa.pub id@ip
+   
+4. 권한설정
+   chmod 700 ~/.ssh/
+   chmod 600 ~/.ssh/authorized_keys
+  
+  
+  
+#!/bin/bash
+
+LOG='/home/ec2-user/log/rsync-ozlang-master-to-autoscaling.log'
+
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] ========================================================================================= \n" | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 1. Bastion sync to Web-01 started \n" | tee -a $LOG
+rsync -avrvz --delete --exclude '.git/' --exclude '.gitignore' --stats -l -t /web/HomePage/www.pagodaozlang.com/ -e "ssh ozlang@211.233.94.138:/web/HomePage/www.pagodaozlang.com/ | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 2. Bastion sync to Web-02 started \n" | tee -a $LOG
+rsync -avrvz --delete --exclude '.git/' --exclude '.gitignore' --stats -l -t /web/HomePage/www.pagodaozlang.com/ -e "ssh ozlang@211.233.94.139:/web/HomePage/www.pagodaozlang.com/ | tee -a $LOG
+echo -e "\n\n[$(date '+%Y-%m-%d %H:%M:%S')] 3. completed successfully \n\n" | tee -a $LOG
+
+
+  
