@@ -69,7 +69,7 @@ https://dev.mysql.com/doc/refman/5.7/en/binary-installation.html
 03. mv mysql-VERSION-OS mysql
 04. cd mysql
 05. mkdir data mysql-files
-06. chown -R mysql. -R ../mysql
+06. chown mysql. -R ../mysql
 07. ./bin/mysqld --initialize --user=mysql	# MySQL 5.7.6 and up
 08. ./bin/mysqld_safe --user=mysql &
 09. ./bin/mysql -uroot -p
