@@ -79,6 +79,7 @@ mysql> set password=password('new password');
 11. cp support-files/mysql.server /etc/init.d/mysql.server
  
 ### my.cnf create
+sql_mode = '' <=== strict_trans_tables disabled  중요해
 [mysqld]
 user = mysql
 port = 3306
