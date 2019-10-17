@@ -3,6 +3,8 @@ GIT 작업하기
 https://rogerdudler.github.io/git-guide/index.ko.html
 
 
+git config color.ui true
+
 ### 작업변경 내용 색상으로 비교 
 git diff --color-words
 
@@ -12,9 +14,15 @@ git diff --word-diff
 ### 작업취소
 git checkout -- 취소할파일명
 
+### 모든 내용 작업취소
+git fetch origin
+git reset --hard origin/master
 
 ### commit 취소
-gitreset --soft commit번호
+git reset --soft commit번호
+
+### 브랜치 분기 
+git checkout develop
 
 
 ### 전체 추가 작업방법 
@@ -40,6 +48,19 @@ git checkout master
 git merge master
 git pull
 git push
+
+
+ 
+### 브랜치 종류
+master : 최종 릴리즈한 안정화 버전
+develop : 다음 릴리즈를 위해 개발중인 최신 버전
+feature : 특정 기능 개발을 위한 branch
+release : 릴리즈 점검을 위한 branch
+hotfix : 긴급 버그 픽스를 위한 branch
+support : 버전 호환성 문제 처리를 위한 branch
+
+### 원격 브랜치 가져오기
+git checkout -b develop remotes/origin/develop
 
 
 
