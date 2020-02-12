@@ -18,7 +18,7 @@
 06. yum -y install httpd24* php71* 
 07. /etc/profile edit
 ##################### oracle oci setting
-export ORACLE_HOME=/usr/lib/oracle/12.2
+export ORACLE_HOME=/usr/lib/oracle/18.5
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/admin
 export LD_LIBRARY_PATH=$ORACLE_HOME:$ORACLE_HOME/sdk
 export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/bin
@@ -27,16 +27,16 @@ export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/bin
 export NODEJS_HOME=/web/nodejs6
 export PATH=$PATH:$NODEJS_HOME/bin
 08. source /etc/profile
-09. download oracle 12c instantclient  패키지 다운로드 / 설치
-   http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+09. download oracle 18c instantclient  패키지 다운로드 / 설치
+   https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
    download instantclient-basic-linux.x64-version.zip
    download instantclient-sdk-linux.x64-version.zip
    download instantclient-sqlplus-linux.x64-version.zip <-- sqlplus 사용으로 필요, 사용치 않으면 필요없음   
    unzip *	
-   mv instantclient_12_2/ /usr/lib/oracle/12.2
-   mkdir -p /usr/lib/oracle/12.2/bin /usr/lib/oracle/12.2/doc /usr/lib/oracle/12.2/NETWORK/admin 
-   ln -s libclntsh.so.12.1 libclntsh.so
-   ln -s libocci.so.12.1 libocci.so
+   mv instantclient_18_5/ /usr/lib/oracle/18.5
+   mkdir -p /usr/lib/oracle/18.5/bin /usr/lib/oracle/18.5/doc /usr/lib/oracle/18.5/NETWORK/admin 
+   ln -s libclntsh.so.18.5 libclntsh.so
+   ln -s libocci.so.18.5 libocci.so
    mv adrci exp expdp genezi imp impdp sqlldr sqlplus uidrvci wrc bin 
    mv BASIC_README glogin.sql SQLPLUS_README TOOLS_README
    vi NETWORK/admin/sqlnet.ora
@@ -70,7 +70,7 @@ ORCL =
   )
 
 
-10. echo /usr/lib/oracle/12.2 > /etc/ld.so.conf.d/oracle-instantclient
+10. echo /usr/lib/oracle/18.5 > /etc/ld.so.conf.d/oracle-instantclient
 11. ldconfig
 12. oracle 접속 확인
 	# sqlplus 아이디/비밀번호@//아이피:포트/서비스명  
@@ -82,13 +82,13 @@ ORCL =
 14. oracle oci8 설치
    cd oci8
    phpize
-   ./configure --with-oci8=instantclient,/usr/lib/oracle/12.2,12.2
+   ./configure --with-oci8=instantclient,/usr/lib/oracle/18.5,18.5
    make install
 15. oracle pdo_oci 설치 - 현재 에러 발생 (해결 방법 찾지 못함)   
    오류내용 : undefined symbol: php_pdo_unregister_driver
    cd pdo_oci
    phpize
-   ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/12.2,12.2
+   ./configure --with-pdo-oci=instantclient,/usr/lib/oracle/18.5,18.5
    make install
 
    ## PDO_OCI 는 안정화 되어 있지 않고 업데이트가 오래된 드라이버이므로 사용하지 않는 게 좋습니다.
@@ -105,13 +105,3 @@ ORCL =
 
  18. postfix install (확인해야됨)
 
-##############################################################################
-###### 아마존 Zadara(NAS) 설치
-##############################################################################
-1. Zadara 설치 - 자동
-    wget -O ~/vpsa_linux.sh "https://172.28.212.100/api/servers/vpsa_linux.sh?iscsi=yes&fc=no&vpsachapuser=$vpsachapuser&vpsachapsecret=$vpsachapsecret&access_key=$access_key" --no-check-certificate
-    sudo yum -y install iscsi-initiator-utils.x86_64
-    mount -t nfs 172.28.212.100:/export/폴더명 폴더명 
-
-1. Zadara 설치 - 수동 (zadara GUI사이트에서 설정후)
-    mount -t nfs 172.28.212.100:/export/폴더명 폴더명  
