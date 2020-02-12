@@ -22,6 +22,7 @@ export ORACLE_HOME=/usr/lib/oracle/18.5
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/admin
 export LD_LIBRARY_PATH=$ORACLE_HOME:$ORACLE_HOME/sdk
 export PATH=$PATH:$ORACLE_HOME:$ORACLE_HOME/bin
+export PHP_DTRACE=yes
 
 ##################### nodejs setting
 export NODEJS_HOME=/web/nodejs6
@@ -80,10 +81,12 @@ ORCL =
    tar xvzf php-7.1.17.tar.gz
    cd php-7.1.17/ext/
 14. oracle oci8 설치
+   yum -y install systemtap-sdt-devel
    cd oci8
    phpize
    ./configure --with-oci8=instantclient,/usr/lib/oracle/18.5,18.5
    make install
+   
 15. oracle pdo_oci 설치 - 현재 에러 발생 (해결 방법 찾지 못함)   
    오류내용 : undefined symbol: php_pdo_unregister_driver
    cd pdo_oci
