@@ -1,5 +1,8 @@
 scouter monitoring
 
+0. 참조
+http://gunsdevlog.blogspot.com/2017/07/scouter-apm-1.html
+
 1. down - https://github.com/scouter-project/scouter/releases
 scouter-all-2.7.1.tar.gz
 scouter.client.product-win32.win32.x86_64.zip
