@@ -1,0 +1,28 @@
+
+
+###################################################################
+###  개발 사이트
+###################################################################
+<VirtualHost *:80>
+  ServerName 도메인
+  ErrorLog logs/도메인-error_log
+  CustomLog logs/도메인-access_log common
+
+  ProxyPass 	     /	http://도메인:5580/ retry=1 acquire=3000 timeout=600 Keepalive=On
+  ProxyPassReverse   /	http://도메인:5580/
+</VirtualHost>
+
+
+###################################################################
+### 개발 사이트
+###################################################################
+<VirtualHost *:80>
+  ServerName 도메인
+  ServerAlias www.도메인
+  ErrorLog logs/도메인-error_log
+  CustomLog logs/도메인-access_log common
+
+  ProxyPass 	     /	http://도메인:5580/
+  ProxyPassReverse   /	http://도메인:5580/
+</VirtualHost>
+
