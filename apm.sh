@@ -5,33 +5,8 @@
 	!. yum -y install zlib-devel openssl-devel pcre-devel
 	!. yum -y install automake1.4 <- php에서 buildconf --force를  사용하기 위해서 
 	
-0. mysql [리눅스 디비서버]
-	!. mysql-enterprise-gpl-5[1].1.34-linux-x86_64-glibc23.tar.gz
-	!. 기능 : 디비서버
-	!. 컴파일시 옵션 :  
-		./configure \
-		--prefix=/usr/local/mysql \
-		--localstatedir=/home/sqldata \
-		--enable-assembler \
-		--without-debug \
-		--with-mysqld-user=mysql \
-		--with-charset=utf8 \
-		--with-extra-charsets=complex \
-		--enable-thread-safe-client
-	!. 설치방법 : 
-		root@root ~] # rpm -e mysql `rpm -qa |grep mysql ` --nodeps <== sqlrelay 가 설치되지 않는다.
-		root@root ~] # useradd mysql 
-		root@root ~] # tar xvzf mysql-enterprise-gpl-5[1].1.34-linux-x86_64-glibc23.tar.gz
-		root@root ~] # mv mysql-enterprise-gpl-5.1.34-linux-x86_64-glibc23 /web/mysql5
-		root@root ~] # ./scripts/mysql_install_db
-		root@root ~] # cp ./support-files/mysql.server bin/
-		root@root ~] # chmod 777 bin/mysql.server 
-		root@root ~] # vi bin/mysql.server
-		> basedir=수정
-		> datadir=수정
-		root@root ~] # sed -i "s/basedir=/basedir=/g" bin/mysql.server
-		root@root ~] # sed -i "s/datadir=/datadir=/g" bin/mysql.server
-		root@root ~] # cp support-files/my-huge.cnf /etc/my.cnf
+0. sqlrelay
+   http://sqlrelay.sourceforge.net/download.html
 
 
 0. apache [ 리눅스 아파치 웹서버 ] - http://httpd.apache.org

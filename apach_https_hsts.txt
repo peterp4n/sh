@@ -18,33 +18,7 @@ I have recently set up LE certificate and wanted to set up HSTS, HTTPS redirecti
     redirect to www
     RewriteEngine On RewriteCond %{HTTPS} on RewriteCond %{HTTP_HOST} !^www\. RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    created
-    Oct '16
-    last reply
-    Nov '16
-    4
-    replies
-    3.9k
-    views
-    3
-    users
-    6
-    likes
-    3
-    links
-    3
 
-sahsanu
-Community Moderator
-Oct '16
-
-Hello @MikkCZ,
-
-As far as I know, custom headers are not set on redirects, also Header set only works on success (2xx responses) if you want that those headers work on, for example, 3xx responses you need to specify the “always” condition Header always set
-
-Two examples using non custom header like Cache-Control:
-
-1.- This example won’t add header Cache-Control on redirects
 
 ###
 # force HTTPS

@@ -1,3 +1,16 @@
+########################
+### apache_memory_leak
+########################
+
+0 4 * * * sync && echo 3 > /proc/sys/vm/drop_caches
+
+
+
+
+
+
+
+
 sed -i "s/#define DEFAULT_SERVER_LIMIT 256/#define DEFAULT_SERVER_LIMIT 1024/g" server/mpm/prefork/prefork.c
 sed -i "s/#define DEFAULT_SERVER_LIMIT 16/#define DEFAULT_SERVER_LIMIT 64/g" server/mpm/worker/worker.c
 sed -i "s/User daemon/User apache/g" docs/conf/httpd.conf.in

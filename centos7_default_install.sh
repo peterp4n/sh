@@ -43,6 +43,7 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
+firewall-cmd --permanent --zone=public --add-port=1521/tcp
 firewall-cmd --reload
 
 systemctl start firewalld 
@@ -57,17 +58,4 @@ systemctl enable firewalld
 yum -y install smartmontools
 systemctl enable smartd
 systemctl start smartd
-
-
-##########################################
-#                                        #
-#             Cockpit install            #
-#                                        #
-########################################## 
-
-yum install -y cockpit
-systemctl start cockpit
-systemctl enable cockpit
-firewall-cmd --permanent --zone=public --add-port=9090/tcp
-firewall-cmd --reload
 
