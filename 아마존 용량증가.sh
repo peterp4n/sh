@@ -5,12 +5,6 @@ $ lsblk
 $ lsblk -f
 $ sudo growpart /dev/xvdf 1
 $ lsblk
-$ sudo resize2fs /dev/xvdf1
-$ df -h
-
-
-
- 
 $ resize2fs /dev/nvme0n1p1
 $ df -h
 $ fdisk -l
