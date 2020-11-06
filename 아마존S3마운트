@@ -1,0 +1,16 @@
+
+0. aws console에서 ec2용으로 S3 AccessKey 생성
+
+1. passwd-s3fs 생성
+echo 'AccessKey:SecretKey' > /etc/passwd-s3fs
+chmod 640 /etc/passwd-s3fs
+
+2. s3fs 설치
+yum install -y s3fs
+
+3. mount
+s3fs s3_bucket_name 마운트폴더
+s3fs "bucket" -o use_cache=/tmp -o allow_other /mnt/XY
+
+4. umount 
+fusermount -u 마운트폴더
