@@ -62,3 +62,15 @@ Executable     : /usr/local/redis/bin/redis-server
 cd /usr/local/redis/bin/
 vi redis.status
 ./redis.status start
+
+
+
+## codecommit 자격증명충돌로 403 오류 발생시
+https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html#setting-up-https-unixes-credential-helper
+$ git config --global credential.helper '!aws codecommit credential-helper $@'
+$ git config --global credential.UseHttpPath true
+
+
+
+
+
