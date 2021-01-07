@@ -2,25 +2,24 @@
 ########################################################################
 ######   redis server
 ########################################################################
-
 1. download
-wget http://download.redis.io/releases/redis-3.2.8.tar.gz
-
+yum -y install jemalloc jemalloc-devl lua-devel
+wget http://download.redis.io/redis-stable.tar.gz
 2. unzip
-tar xvzf redis-3.2.8.tar.gz
-
+mv redis-stable.tar.gz /usr/local/src
+cd /usr/local/src/
+tar xvzf redis-stable.tar.gz
+cd redis-stable
 3. compile
-make
-make install
-
+make PREFIX=/usr/local/redis install
 4. config set
 cd utils
-./install_server.sh -> 설치경로설정
-vi /etc/init.d/redis_6379 -> 설치경로설정
-
-5. 실행
-/etc/init.d start
-
+./install_server.sh
+5. start set
+cd /usr/local/redis/bin/
+vi redis.status
+6. redis start
+./redis.status start
 
 ########################################################################
 ######   redis php client
