@@ -99,6 +99,27 @@ $ git config --global credential.helper '!aws codecommit credential-helper $@'
 $ git config --global credential.UseHttpPath true
 
 
+## efs mount
+yum -y install amazon-efs-utils
+vi /etc/fstab
+## efs tls  사용
+fs-code                                   /web/efs-point  efs    _netdev,tls,accesspoint=fsap-code 0 0
+
+mount -a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
