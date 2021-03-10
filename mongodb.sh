@@ -2,13 +2,13 @@
 참조 : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-amazon/
 
 1. repo 등록
-vi /etc/yum.repos.d/mongodb-org-4.0.repo  
-[mongodb-org-4.0]
-name=MongoDB 4.0 Repository
-baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.0/x86_64/
+vi /etc/yum.repos.d/mongodb-org.repo  
+[mongodb-org]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.4/x86_64/
 gpgcheck=1
 enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
 
 2. 설치
 yum install -y mongodb-org
