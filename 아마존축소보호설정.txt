@@ -1,0 +1,8 @@
+
+# Auto Scaling Groups 축소보호
+https://docs.aws.amazon.com/ko_kr/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html
+1. Auto Scaling Groups > 대상그룹 > 인스턴스관리
+2. 대상 ec2 선택 
+3. 작업 > 축소보호설정
+#aws autoscaling set-instance-protection --instance-ids ec2아이디 --auto-scaling-group-name rirosoft-web-ASG --protected-from-scale-in
+
