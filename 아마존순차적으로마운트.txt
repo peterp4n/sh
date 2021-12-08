@@ -1,0 +1,29 @@
+
+
+# EFS 가 여러개 일때 가끔씩 특정 EFS가 자동으로 마운트가 안되는 경우가 발생한다
+이런 경우 아래와 같이 처리하면 마운트가 순차적으로 해서 문제가 해결된다.
+
+# 참조 
+https://docs.aws.amazon.com/efs/latest/ug/troubleshooting-efs-mounting.html
+https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-old.html#mounting-fs-nfs-info
+
+
+# vi /etc/systemd/system/mount-nfs-sequentially.service 
+[Unit]
+Description=Workaround for mounting NFS file systems sequentially at boot time
+After=remote-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mount -avt nfs4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+# systemctl daemon-reload
+# systemctl enable mount-nfs-sequentially.service
+
+패키지가 설치되어 있지 않다면 설치
+# yum -y install nfs-utils
+
