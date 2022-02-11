@@ -63,7 +63,16 @@ sudo systemctl start httpd
 yum -y install php php-devel php-common php-cli php-mysqlnd php-pdo php-redis php-gd php-opcache php-pear php-mbstring
 pecl install xdebug
 pecl install imagick
-pecl install scrypt
+
+# scrypt install
+https://github.com/DomBlack/php-scrypt 최신버전 다운
+unzip php-scrypt 
+phpize
+./configure --enable-scrypt --with-php-config=/usr/bin/php-config
+make
+make install
+cat 'extension=scrypt.so' >> /etc/php.ini
+
 ## php.ini edit
 echo "zend_extension=/usr/lib64/php/modules/xdebug.so" >> /etc/php.ini
 echo "extension=scrypt.so" >> /etc/php.ini
