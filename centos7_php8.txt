@@ -1,0 +1,47 @@
+https://wiki.crowncloud.net/?How_to_Install_PHP_8_in_centOS_7
+
+### php 8 setup
+1. epel install
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+2. remi install 
+yum install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+3. yum util install
+yum -y install yum-utils
+
+4. php version fix
+yum-config-manager --disable 'remi-php*'
+yum-config-manager --enable   remi-php81
+
+5. yum update
+yum -y update
+
+6. php 8.1 install
+yum install -y php
+
+7. Check PHP Version.
+php -v
+
+
+### firewalld setup
+1. /etc/firewalld/zones/public.xml edit
+http, https add
+
+2. firewalld restart
+systemctl restart firewalld 
+
+### mariadb setup
+1. yum setup
+/etc/yum.repos.d/MariaDB.repo
+# MariaDB 10.8 CentOS repository list - created 2022-12-06 05:46 UTC
+# https://mariadb.org/download/
+[mariadb]
+name = MariaDB
+baseurl = https://tw1.mirror.blendbyte.net/mariadb/yum/10.8/centos7-amd64
+gpgkey=https://tw1.mirror.blendbyte.net/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+2. mariadb install
+yum install MariaDB-server MariaDB-client
+
