@@ -1,0 +1,10 @@
+yum -y install python3-devel
+pip3 install django
+django-admin startproject dbcontest
+pip3 install mysqlclient
+python3 manage.py runserver
+python3 manage.py migrate 
+python3 manage.py runserver 
+python3 manage.py runserver
+python3 manage.py inspectdb > models.py
+pip3 install djangorestframework
