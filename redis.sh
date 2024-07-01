@@ -25,13 +25,31 @@ vi redis.status
 ######   redis php client
 ########################################################################
 
-wget https://github.com/phpredis/phpredis/tree/php7 -O phpredis7.zip
+wget https://pecl.php.net/get/igbinary
+mv igbinary igbinary.tar.gz
+tar xvzf igbinary.tar.gz 
+cd igbinary-version/
+phpize 
+./configure --enable-igbinary
+make 
+make install
 
-/configure \
---with-php-config=/web/php7/bin/php-config \
---enable-redis \
---enable-redis-igbinary \
---enable-redis-session \
+wget https://pecl.php.net/get/redis
+mv redis redis.tar.gz
+tar xvzf redis.tar.gz 
+cd redis-version/
+phpize 
+./configure --enable-redis --enable-redis-igbinary --with-php-config=/usr/bin/php-config
+make 
+make install
+ll /usr/lib64/php/modules/
+vi /etc/php.ini 
+systemctl reload httpd
+php -i
+php -i |grep igbinary
+php -i |grep redis
+
+
 
 
 ########################################################################
