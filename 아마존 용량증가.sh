@@ -8,7 +8,7 @@ https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/recognize-expanded-vol
 $ df -hT
 $ lsblk
 $ lsblk -f
-$ sudo growpart /dev/xvda 1
+$ growpart /dev/nvme0n1 1
 $ lsblk
 $ xfs_growfs -d /
 
