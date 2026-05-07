@@ -1,0 +1,8 @@
+
+1. 그룹 > 내 그룹 (https://groups.office.hiworks.com/group/main)
+   내 그룹에서 그룹생성
+2. 채팅방에서 웹훅수신연동설정  
+3. 메시지 전송 설정
+   curl.exe -X POST "https://hooks.hiworks.com/messenger/chat/키값" \
+   -H "Content-Type: application/json; charset=utf-8" \
+   -d "{\"text\":\"메시지\"}"
